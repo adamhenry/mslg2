@@ -1,0 +1,24 @@
+<h1>Editing ship</h1>
+
+<% form_for(@ship) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :max_cargo_space %><br />
+    <%= f.text_field :max_cargo_space %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @ship %> |
+<%= link_to 'Back', ships_path %>
