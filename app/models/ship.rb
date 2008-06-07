@@ -1,5 +1,6 @@
 class Ship < ActiveRecord::Base
 	belongs_to :location
+	has_many :manifests
 
 	def nearby_ships
 	   location.ships.reject { |s| s == self } 
