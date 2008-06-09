@@ -36,14 +36,16 @@ class ShipsController < ApplicationController
   # GET /ships/1/edit
   def edit
     @ship = Ship.find(params[:id])
-    @locations = Location.find :all
   end
 
   # POST /ships
   # POST /ships.xml
   def create
-	raise "OHSHIT"
-    @ship = Ship.new(params[:ship].merge( :locatoin => Location.find_by_name(params[location]) ))
+    options = params[:ship].merge( :location => Location.find_by_name( params[:location]) )
+    @ship = Ship.new(options)
+
+    #raise Location.find_by_name(:first, params[:location]).id
+    #raise params[:location]
 
     respond_to do |format|
       if @ship.save

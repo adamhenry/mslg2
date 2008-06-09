@@ -3,11 +3,11 @@ class Ship < ActiveRecord::Base
 	has_many :manifests
 
 	def nearby_ships
-	   location.ships.reject { |s| s == self } 
+	   location.nil? ? [] : location.ships.reject { |s| s == self }
 	end
 
 	def send_message(msg)
-	   Message.create! :ship => self, :msg => msg
+	   #Message.create! :ship => self, :msg => msg
 	end
 
 	def destroy
