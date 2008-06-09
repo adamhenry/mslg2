@@ -1,0 +1,15 @@
+<h1>New manifest</h1>
+
+<% form_for(@manifest) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', manifests_path %>

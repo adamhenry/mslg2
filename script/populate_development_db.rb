@@ -23,4 +23,4 @@ Item.create :name => "Scordite ore"
 Item.create :name => "Pyroxeres ore"
 Item.create :name => "Plagioclase ore"
 
-Manifest.create :item => 1, :ship => 1 :number => 1
+Manifest.create :item => Item.find(:first), :ship => Ship.find(:first), :number => 1

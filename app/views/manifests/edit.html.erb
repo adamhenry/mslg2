@@ -1,0 +1,16 @@
+<h1>Editing manifest</h1>
+
+<% form_for(@manifest) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @manifest %> |
+<%= link_to 'Back', manifests_path %>

@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :manifests
+
+  map.resources :items
+
   map.resources :ships
 
   map.resources :ships
