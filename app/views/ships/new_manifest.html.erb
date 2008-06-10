@@ -1,0 +1,21 @@
+<h1><%= @ship.name %></h1>
+<h2>New manifest</h2>
+
+<% form_for(@manifest) do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :ship_id %>
+
+  <p>
+    Item:<br />
+    <%= select("manifest","item_id", @items.collect{ |s| [ s.name, s.id] }) %>
+  </p>
+  <p>
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', :action => 'show', :id => @ship.id %>

@@ -1,17 +1,39 @@
+<h1><%= @ship.name %></h1>
+
 <p>
-  <b>Name:</b>
-  <%=h @ship.name %>
+  <b>Location:</b> <%= @ship.location.name %>
+</p>
+<p>
+  <h4>Manifest</h4>
 </p>
 
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Number</th>
+  </tr>
+
+<% for manifest in @ship.manifests %>
+  <% form_for(manifest) do |f| %>
+    <%= f.error_messages %>
+    <tr>
+      <td><%= link_to manifest.item.name, manifest.item %></td>
+  
+      <td><%= f.text_field :number %></td>
+      <td><%= f.submit "Update" %></td>
+
+      <td><%= link_to 'Destroy', manifest, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+
+<%= link_to 'New manifest', :action => :new_manifest, :id => @ship.id%> </br>
 <p>
   <b>Max cargo space:</b>
   <%=h @ship.max_cargo_space %>
 </p>
 
-<p>
-  <b>Location:</b>
-  <%=h @ship.location.name %>
-</p>
 
 <%= link_to 'Edit', edit_ship_path(@ship) %> |
 <%= link_to 'Back', ships_path %>

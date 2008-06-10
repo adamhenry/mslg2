@@ -9,10 +9,9 @@
 
 <% for ship in @ships %>
   <tr>
-    <td><%=h ship.name %></td>
+    <td><%= link_to ship.name, ship %></td>
     <td><%=h ship.max_cargo_space %></td>
     <td><%=h ship.location.name unless ship.location.nil?%></td>
-    <td><%= link_to 'Show', ship %></td>
     <td><%= link_to 'Edit', edit_ship_path(ship) %></td>
     <td><%= link_to 'Destroy', ship, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

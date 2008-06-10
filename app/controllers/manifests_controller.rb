@@ -49,7 +49,7 @@ class ManifestsController < ApplicationController
     respond_to do|format|
       if @manifest.save
         flash[:notice] = 'Manifest was successfully created.'
-        format.html { redirect_to(@manifest) }
+        format.html { redirect_to(@manifest.ship) }
         format.xml  { render :xml => @manifest, :status => :created, :location => @manifest }
       else
         format.html { render :action => "new" }
@@ -66,7 +66,7 @@ class ManifestsController < ApplicationController
     respond_to do |format|
       if @manifest.update_attributes(params[:manifest])
         flash[:notice] = 'Manifest was successfully updated.'
-        format.html { redirect_to(@manifest) }
+        format.html { redirect_to(@manifest.ship) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -79,10 +79,11 @@ class ManifestsController < ApplicationController
   # DELETE /manifests/1.xml
   def destroy
     @manifest = Manifest.find(params[:id])
+	 ship = @manifest.ship
     @manifest.destroy
 
     respond_to do |format|
-      format.html { redirect_to(manifests_url) }
+      format.html { redirect_to(ship) }
       format.xml  { head :ok }
     end
   end

@@ -33,6 +33,14 @@ class ShipsController < ApplicationController
     end
   end
 
+  def new_manifest
+    @ship = Ship.find params[:id] 
+    @manifest = Manifest.new
+	 @manifest.ship_id = @ship.id
+	 @manifest.number = 1
+	 @items = Item.find :all
+  end
+
   # GET /ships/1/edit
   
   def edit
