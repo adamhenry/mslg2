@@ -25,6 +25,8 @@ class ManifestsController < ApplicationController
   # GET /manifests/new.xml
   def new
     @manifest = Manifest.new
+	 @ships = Ship.find :all
+	 @items = Item.find :all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +37,8 @@ class ManifestsController < ApplicationController
   # GET /manifests/1/edit
   def edit
     @manifest = Manifest.find(params[:id])
+	 @ships = Ship.find :all
+	 @items = Item.find :all
   end
 
   # POST /manifests
@@ -42,7 +46,7 @@ class ManifestsController < ApplicationController
   def create
     @manifest = Manifest.new(params[:manifest])
 
-    respond_to do |format|
+    respond_to do|format|
       if @manifest.save
         flash[:notice] = 'Manifest was successfully created.'
         format.html { redirect_to(@manifest) }

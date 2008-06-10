@@ -4,6 +4,14 @@
   <%= f.error_messages %>
 
   <p>
+    Ship:<br />
+    <%= select("manifest","ship_id", @ships.collect{ |s| [ s.name, s.id] } ) %>
+  </p>
+  <p>
+    Item:<br />
+    <%= select("manifest","item_id", @items.collect{ |s| [ s.name, s.id] }) %>
+  </p>
+  <p>
     <%= f.label :number %><br />
     <%= f.text_field :number %>
   </p>

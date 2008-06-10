@@ -9,11 +9,7 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <select name="location">
-	<% for location in @locations -%>
-	<option value="<%= location.name %>"><%= location.name %></option>
-	<%- end -%>
-    </select>
+    <%= select( :ship, :location_id, @locations.collect { |l| [ l.name, l.id] } ) %>
   </p>
   <p>
     <%= f.label :max_cargo_space %><br />

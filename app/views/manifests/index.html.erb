@@ -2,11 +2,15 @@
 
 <table>
   <tr>
+    <th>Ship</th>
+    <th>Item</th>
     <th>Number</th>
   </tr>
 
 <% for manifest in @manifests %>
   <tr>
+    <td><%=h manifest.ship.name %></td>
+    <td><%=h manifest.item.name %></td>
     <td><%=h manifest.number %></td>
     <td><%= link_to 'Show', manifest %></td>
     <td><%= link_to 'Edit', edit_manifest_path(manifest) %></td>

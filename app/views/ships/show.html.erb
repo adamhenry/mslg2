@@ -8,6 +8,10 @@
   <%=h @ship.max_cargo_space %>
 </p>
 
+<p>
+  <b>Location:</b>
+  <%=h @ship.location.name %>
+</p>
 
 <%= link_to 'Edit', edit_ship_path(@ship) %> |
 <%= link_to 'Back', ships_path %>
