@@ -75,7 +75,7 @@ class ShipsController < ApplicationController
 
     respond_to do |format|
       if @ship.update_attributes(params[:ship])
-        flash[:notice] = "#{@ship.name} sucsessfuly warped to #{ship.location}."
+        flash[:notice] = "#{@ship.name} sucsessfuly warped to #{@ship.location}."
         format.html { redirect_to(@ship) }
         format.xml  { head :ok }
       else
