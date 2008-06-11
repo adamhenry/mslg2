@@ -4,6 +4,13 @@
   <b>Location:</b> <%= @ship.location.name %>
 </p>
 <p>
+  <% form_for(@ship, :url => { :action => 'warp_to' } ) do |f| %>
+  <b>Warp to location:</b>
+  <%= select :ship, :location_id, @destinations.collect { |l| [ l.name, l.id] } %>
+  <%= f.submit "Warp to"%>
+  <%- end -%>
+</p>
+<p>
   <h4>Manifest</h4>
 </p>
 

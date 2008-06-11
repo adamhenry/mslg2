@@ -14,6 +14,8 @@ class ShipsController < ApplicationController
   # GET /ships/1.xml
   def show
     @ship = Ship.find(params[:id])
+	 locations = Location.find :all
+	 @destinations = locations.reject { |l| l == @ship.location }
 
     respond_to do |format|
       format.html # show.html.erb
@@ -67,6 +69,22 @@ class ShipsController < ApplicationController
     end
   end
 
+  def warp_to
+
+    @ship = Ship.find(params[:id])
+
+    respond_to do |format|
+      if @ship.update_attributes(params[:ship])
+        flash[:notice] = "#{@ship.name} sucsessfuly warped to #{ship.location}."
+        format.html { redirect_to(@ship) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @ship.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
   # PUT /ships/1
   # PUT /ships/1.xml
   def update
