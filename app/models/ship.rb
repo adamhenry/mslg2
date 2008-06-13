@@ -15,4 +15,11 @@ class Ship < ActiveRecord::Base
 	   super
 	end
 
+	def assign_role(role)
+	end
+
+	def in_role?(role)
+		true
+	end
+
 end

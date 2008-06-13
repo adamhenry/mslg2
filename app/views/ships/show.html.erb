@@ -4,7 +4,7 @@
   <b>Location:</b> <%= @ship.location.name %>
 </p>
 <p>
-  <% form_for(@ship, :url => { :action => 'warp_to' } ) do |f| %>
+  <% form_for(@ship, :url => { :action => 'warp_to', :id => @ship } ) do |f| %>
   <b>Warp to location:</b>
   <%= select :ship, :location_id, @destinations.collect { |l| [ l.name, l.id] } %>
   <%= f.submit "Warp to"%>
@@ -21,12 +21,12 @@
   </tr>
 
 <% for manifest in @ship.manifests %>
-  <% form_for(manifest) do |f| %>
+  <% form_for(manifest, :url => { :action => 'update_manifest', :id => @ship } ) do |f| %>
     <%= f.error_messages %>
     <tr>
       <td><%= link_to manifest.item.name, manifest.item %></td>
   
-      <td><%= f.text_field :number %></td>
+      <td><%= f.text_field :number%> <%= f.hidden_field :id %></td>
       <td><%= f.submit "Update" %></td>
 
       <td><%= link_to 'Destroy', manifest, :confirm => 'Are you sure?', :method => :delete %></td>

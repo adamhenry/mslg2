@@ -87,6 +87,21 @@ class ShipsController < ApplicationController
   
   # PUT /ships/1
   # PUT /ships/1.xml
+
+	def update_manifest
+		@manifest = Manifest.find params[:manifest][:id]
+		@manifest.number = params[:manifest][:number]
+
+		begin
+			@manifest.save!
+			flash[:notice] = "Manifest item \"#{@manifest.item.name}\" successfully was updated."
+			redirect_to(@manifest.ship)
+		rescue
+			flash[:error] = "Manifest unsucessful update"
+			redirect_to(@manifest.ship)
+		end
+	end
+
   def update
 
     @ship = Ship.find(params[:id])
