@@ -2,13 +2,9 @@ class Manifest < ActiveRecord::Base
 	belongs_to :ship
 	belongs_to :item
 
-	def add number
-		self.number += number
-	end
-
-	def add! number
-		self.add number
-		self.save
+	def add_to manifest
+		manifest.number += self.number
+		manifest.save
 	end
 
 	def duplicate_manifest
@@ -16,12 +12,11 @@ class Manifest < ActiveRecord::Base
 	end
 
 	def merge(old)
-		self.created_at = old.created_at
-		add old.number
-		old.destroy
+		add_to old
+		destroy
 	end
 
-	def before_save
-		#merge(duplicate_manifest) if duplicate_manifest
+	def before_create
+		merge(duplicate_manifest) if duplicate_manifest
 	end
 end

@@ -72,17 +72,18 @@ class ShipsController < ApplicationController
   def warp_to
 
     @ship = Ship.find(params[:id])
+	 @location = Location.find params[:ship][:location_id]
 
-    respond_to do |format|
-      if @ship.update_attributes(params[:ship])
-        flash[:notice] = "#{@ship.name} sucsessfuly warped to #{@ship.location}."
-        format.html { redirect_to(@ship) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @ship.errors, :status => :unprocessable_entity }
-      end
-    end
+		begin
+			@ship.warp_to @location
+			flash[:notice] = "#{@ship.name} sucsessfuly warped to #{@ship.location.name}."
+		rescue  Ship::OutOfFuel
+			flash[:notice] = "#{@ship.name} does not have enough fuel to warp."
+		rescue  Ship::WarpToException
+			flash[:notice] = "#{@ship.name} is allready at that locaiton."
+		end
+		redirect_to(@ship)
+
   end
   
   # PUT /ships/1
