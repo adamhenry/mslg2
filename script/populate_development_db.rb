@@ -22,5 +22,10 @@ Item.create :name => "Veldspar ore"
 Item.create :name => "Scordite ore"
 Item.create :name => "Pyroxeres ore"
 Item.create :name => "Plagioclase ore"
+fuel = Item.create :name => "Fuel"
 
 Manifest.create :item => Item.find(:first), :ship => Ship.find(:first), :number => 1
+
+Ship.find(:all).each do |ship|
+	Manifest.create :item => fuel, :ship => ship, :number => 100
+end

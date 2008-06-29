@@ -11,7 +11,7 @@
   <%- end -%>
 </p>
 <p>
-	<b>Fuel:</b> <%= @ship.fuel %>
+	<b><%= @ship.fuel_type.name.titleize%>:</b> <%= @ship.manifests[ @ship.fuel_type ] %>
 </p>
 <p>
   <h4>Manifest</h4>
@@ -23,7 +23,7 @@
     <th>Number</th>
   </tr>
 
-<% for manifest in @ship.manifests %>
+<% for manifest in @ship.manifests.reject { |m| m.item == @ship.fuel_type } %>
   <% form_for(manifest, :url => { :action => 'update_manifest', :id => @ship } ) do |f| %>
     <%= f.error_messages %>
     <tr>
